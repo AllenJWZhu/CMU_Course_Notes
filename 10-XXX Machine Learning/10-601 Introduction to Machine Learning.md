@@ -1,4 +1,5 @@
-[Go to Real Cool Heading section](##Supervised_and_Unsupervised_Learning)
+[Lecture 1: Supervised and Unsupervised Learning](##Supervised_and_Unsupervised_Learning)
+[Lecture 2: Machine Learning as Functional Approximation](##Machine_Learning_as_Functional_pproximation)
 
 ## Supervised and Unsupervised Learning
 ### Supervised models:<br>
