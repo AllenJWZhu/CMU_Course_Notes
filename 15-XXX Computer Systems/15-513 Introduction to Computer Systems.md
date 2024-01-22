@@ -21,7 +21,7 @@ Consider 1A2B in Hexadecimal:
 
 - Boolean algebra operates on bit vectors.
 - In regards to operations, the following:
-  -- & Intersection 01000001 { 0, 6 }
-  -- | Union 01111101 { 0, 2, 3, 4, 5, 6 }
-  -- ^ Symmetric difference 00111100 { 2, 3, 4, 5 }
-  -- ~ Complement 10101010 { 1, 3, 5, 7 }
+-- & Intersection 01000001 { 0, 6 }
+-- | Union 01111101 { 0, 2, 3, 4, 5, 6 }
+-- ^ Symmetric difference 00111100 { 2, 3, 4, 5 }
+-- ~ Complement 10101010 { 1, 3, 5, 7 }
