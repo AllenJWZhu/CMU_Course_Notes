@@ -1,6 +1,6 @@
 # CMU_course_notes
 
-Comprehensive notes for various courses offered at Carnegie Mellon University, are designed as an invaluable resource for students and educators alike.
+Comprehensive notes for various courses offered at Carnegie Mellon University are designed as an invaluable resource for students and educators alike.
 
 ## Project Description
 
@@ -28,11 +28,11 @@ We welcome contributions! To contribute:
 
 ## License
 
-This project is licensed under the MIT License. This means you're free to use, modify, and distribute the notes as long as you credit the original source. See [LICENSE.md](LINK) for more details.
+This project is licensed under the MIT License. This means you're free to use, modify, and distribute the notes as long as you credit the source. See [LICENSE.md](LINK) for more details.
 
 ## Contact
 
-Questions, feedback, or want to collaborate? Feel free to reach out to me at allenzhu724@gmail.com or connect with me on [LinkedIn]([LINK](https://www.linkedin.com/in/allenjwzhu724/)https://www.linkedin.com/in/allenjwzhu724/).
+Questions, feedback, or want to collaborate? Feel free to reach out to me at allenzhu724@gmail.com or connect with me on [LinkedIn](https://www.linkedin.com/in/allenjwzhu724/).
 
 ## Acknowledgments
 
