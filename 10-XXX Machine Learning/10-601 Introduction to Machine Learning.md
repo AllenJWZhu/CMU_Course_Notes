@@ -13,7 +13,7 @@
 Three components: Task T, Performance metric P, and Experience E.
 
 ### Definitions: Machine Learning Classifier
-A **classifier** is a function that takes feature values as input and outputs a label. <br>
+A <ins>**classifier**</ins> is a function that takes feature values as input and outputs a label. <br>
 A **test dataset** is used to evaluate a classifier’s predictions. <br>
 The **error rate** is the proportion of data points where the prediction is wrong <br>
 
