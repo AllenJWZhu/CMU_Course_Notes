@@ -4,14 +4,7 @@ Comprehensive notes for various courses offered at Carnegie Mellon University ar
 
 ## Project Description
 
-Born out of a need to consolidate and share rich academic knowledge, this repository aims to provide detailed and accessible notes covering a wide range of subjects taught at CMU. From Computer Science to Humanities, the notes encapsulate key concepts, lecture insights, and study guides. This resource is ideal for CMU students seeking supplementary study material, educators looking for teaching aids, and self-learners interested in the curriculum.
-
-## Installation
-
-Before you begin, ensure you have a GitHub account and Git installed on your machine.
-
-To clone the repository, open your terminal and run:
-`git clone https://github.com/yourusername/CMU_course_notes.git`
+Born out of a need to consolidate and share rich academic knowledge, this repository aims to provide detailed and accessible notes covering a wide range of subjects taught at CMU. From Computer Systems to Machine Learning and Artificial Intelligence, the notes encapsulate key concepts, lecture insights, and study guides. This resource is ideal for CMU students seeking supplementary study material, educators looking for teaching aids, and self-learners interested in the curriculum.
 
 ## Usage
 
