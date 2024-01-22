@@ -12,3 +12,11 @@ Binary representation leads to a simple binary, i.e. base-2, numbering system<br
 Consider 1A2B in Hexadecimal:
 - 1 \* 16<sup>3</sup> + A \* 16<sup>2</sup> + 2 \* 16<sup>1</sup> + B \* 16<sup>0</sup>
 - 1 \* 16<sup>3</sup> + 10 \* 16<sup>2</sup> + 2 \* 16<sup>1</sup> + 11 \* 16<sup>0</sup> = 6699 (decimal)
+
+## Bit-level Manipulations
+- **AND** A&B = 1 when both A=1 and B=1
+- **OR** A|B = 1 when either A=1 or B=1
+- **NOT** ~A = 1 when A=0
+- **Exclusive-OR (XOR)** A^B = 1 when either A=1 or B=1, but not both
+
+- Boolean algebra operates on bit vectors.
