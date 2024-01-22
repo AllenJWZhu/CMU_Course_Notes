@@ -1,5 +1,6 @@
+[Go to Real Cool Heading section](##Supervised_and_Unsupervised_Learning)
 
-## Supervised and Unsupervised learning
+## Supervised and Unsupervised Learning
 ### Supervised models:<br>
 · Decision Trees<br>
 · KNN<br>
