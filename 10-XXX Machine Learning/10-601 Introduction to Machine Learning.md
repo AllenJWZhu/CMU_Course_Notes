@@ -38,15 +38,15 @@ The <ins>**error rate**</ins> is the proportion of data points where the predict
 · <ins>**Feature Space**</ins>: x<br>
 · <ins>**Label Space**</ins>: y<br>
 · <ins>**Unknown target function**</ins>: c<sup>*</sup>: x -> y<br>
-· <ins>**Training Dataset**</ins>: D = {x<sup>(1)</sup>, c<sup>\*</sup>(x<sup>(1)</sup>) = y<sup>(1)</sup>, (x<sup>(2)</sup>, y<sup>(2)</sup>)...,(x<sup>(N)</sup>, y<sup>(N)</sup>)}
-· <ins>**Hypothesis Space**</ins>: H
-· <ins>**Goal**</ins>: Find the classifier, h ∈ H, that best approximates c<sup>\*</sup>
+· <ins>**Training Dataset**</ins>: D = {x<sup>(1)</sup>, c<sup>\*</sup>(x<sup>(1)</sup>) = y<sup>(1)</sup>, (x<sup>(2)</sup>, y<sup>(2)</sup>)...,(x<sup>(N)</sup>, y<sup>(N)</sup>)}<br>
+· <ins>**Hypothesis Space**</ins>: H<br>
+· <ins>**Goal**</ins>: Find the classifier, h ∈ H, that best approximates c<sup>\*</sup><br>
 
 ## Loss function and error Rates
 <ins>**Loss Function**</ins>: l : y x y -> ℝ<br>
 This defines how "bad" predictions $\hat{y}$ = h(x), are compared to the true labels, y = c<sup>\*</sup>(x)<br>
 
 ### Common choices for loss functions:
-1. Squared loss (for regression): l(y,$\hat{y}$) = (y - $\hat{y}$)<sup>2</sup><br>
-2. Binary or 0-1 loss (for classification): l(y,$\hat{y}$) = 1(y != $\hat{y}$)
+1. Squared loss (for regression): l(y, $\hat{y}$ ) = (y - $\hat{y}$ )<sup>2</sup><br>
+2. Binary or 0-1 loss (for classification): l(y, $\hat{y}$ ) = 1(y != $\hat{y}$ )
 
