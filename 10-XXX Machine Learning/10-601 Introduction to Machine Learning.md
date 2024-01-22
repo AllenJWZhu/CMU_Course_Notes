@@ -1,5 +1,5 @@
-[Lecture 1: Supervised and Unsupervised Learning](##Supervised-and-Unsupervised-Learning)<br>
-[Lecture 2: Machine Learning as Functional Approximation](##Machine-Learning-as-Functional-Approximation)<br>
+[Lecture 1: Supervised and Unsupervised Learning](#Supervised-and-Unsupervised-Learning)<br>
+[Lecture 2: Machine Learning as Functional Approximation](#Machine-Learning-as-Functional-Approximation)<br>
 
 ## Supervised and Unsupervised Learning
 ### Supervised models:<br>
