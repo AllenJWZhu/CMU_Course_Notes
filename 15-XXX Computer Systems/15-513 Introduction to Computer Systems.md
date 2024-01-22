@@ -4,3 +4,11 @@ Binary representation leads to a simple binary, i.e. base-2, numbering system<br
 - 0 represents 0<br>
 - 1 represents 1<br>
 - Each “place” represents a power of two, exactly as each place in our usual “base 10”, 10-ary numbering system represents a power of 10<br>
+
+## Hexadecimal 00<sub>16</sub> to FF<sub>16</sub>
+- Base 16 number representation
+- Use characters ‘0’ to ‘9’ and ‘A’ to ‘F’
+
+Consider 1A2B in Hexadecimal:
+- 1 \* 16<sup>3</sup> + A \* 16<sup>2</sup> + 2 \* 16<sup>1</sup> + B \* 16<sup>0</sup>
+- 1 \* 16<sup>3</sup> + 10 \* 16<sup>2</sup> + 2 \* 16<sup>1</sup> + 11 \* 16<sup>0</sup> = 6699 (decimal)
