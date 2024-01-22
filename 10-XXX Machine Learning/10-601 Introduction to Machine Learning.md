@@ -38,4 +38,4 @@ The <ins>**error rate**</ins> is the proportion of data points where the predict
 · <ins>**Feature Space**</ins>: x<br>
 · <ins>**Label Space**</ins>: y<br>
 · <ins>**Unknown target function**</ins>: c<sup>*</sup>: x -> y<br>
-· <ins>**Training Dataset**</ins>: D = {x<sup>(1)</sup>, c<sup>*</sup>(x<sup>(1)</sup>) = y<sup>(1)</sup>, (x<sup>(2)</sup>, y<sup>(2)</sup>)...,(x<sup>(N)</sup>, y<sup>(N)</sup>)}
+· <ins>**Training Dataset**</ins>: D = {x<sup>(1)</sup>, c<sup>/*</sup>(x<sup>(1)</sup>) = y<sup>(1)</sup>, (x<sup>(2)</sup>, y<sup>(2)</sup>)...,(x<sup>(N)</sup>, y<sup>(N)</sup>)}
