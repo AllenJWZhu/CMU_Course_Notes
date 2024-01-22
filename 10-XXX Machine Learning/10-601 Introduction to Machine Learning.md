@@ -43,5 +43,10 @@ The <ins>**error rate**</ins> is the proportion of data points where the predict
 · <ins>**Goal**</ins>: Find the classifier, h ∈ H, that best approximates c<sup>\*</sup>
 
 ## Loss function and error Rates
-<ins>**Loss Function**</ins>: l : y x y -> ℝ
-This defines how "bad" predictions \hat{y} = h(x), are compared to the true labels, y = c<sup>\*</sup>(x)
+<ins>**Loss Function**</ins>: l : y x y -> ℝ<br>
+This defines how "bad" predictions \hat{y} = h(x), are compared to the true labels, y = c<sup>\*</sup>(x)<br>
+
+### Common choices for loss functions:
+1. Squared loss (for regression): l(y,\hat{y}) = (y - \hat{y})<sup>2</sup><br>
+2. Binary or 0-1 loss (for classification): l(y,\hat{y}) = 1(y != \hat{y})
+
