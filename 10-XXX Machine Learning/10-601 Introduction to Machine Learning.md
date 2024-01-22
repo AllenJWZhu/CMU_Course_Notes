@@ -1,7 +1,7 @@
-[Lecture 1: Supervised and Unsupervised Learning](#Supervised-and-Unsupervised-Learning)<br>
-[Lecture 2: Machine Learning as Functional Approximation](#Machine-Learning-as-Functional-Approximation)<br>
+[Lecture 1: Supervised and Unsupervised Learning](#Lecture-1:-Supervised-and-Unsupervised-Learning)<br>
+[Lecture 2: Machine Learning as Functional Approximation](#Lecture-2:-Machine-Learning-as-Functional-Approximation)<br>
 
-## Supervised and Unsupervised Learning
+## Lecture 1: Supervised and Unsupervised Learning
 ### Supervised models:<br>
 · Decision Trees<br>
 · KNN<br>
@@ -36,7 +36,7 @@ The <ins>**error rate**</ins> is the proportion of data points where the predict
     Output: some measure of how good the predictions are;<br>
     usually (but not always) error rate<br>
 
-## Machine Learning as Functional Approximation
+## Lecture 2: Machine Learning as Functional Approximation
 ### Notations
 · <ins>**Feature Space**</ins>: x<br>
 · <ins>**Label Space**</ins>: y<br>
