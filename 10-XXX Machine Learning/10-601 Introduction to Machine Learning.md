@@ -53,13 +53,13 @@ This defines how "bad" predictions $\hat{y}$ = h(x), are compared to the true la
 
 ### Decision Stump Pseudocode:
 def train(D<sub>train</sub>):<br>
-    pick a feature to split on, x<sub>d</sub><br>
-    # split D<sub>train</sub> according to x<sub>d</sub><br>
-    for v in V(x<sub>d</sub>), all possible values for x<sub>d</sub>:<br>
-        D<sub>v</sub> = {(x<sup>n</sup>, y<sup>n</sup>) ∈ D<sub>train</sub>(x<sup>n</sup><sub>d</sub> = v)}<br>
-    # compute a majority vote for each split<br>
-    for v in V(x<sub>d</sub>):<br>
-        store $\hat{y}$ <sub>v</sub> = mode(labels in D<sub>v</sub>)<br>
+    &nbsppick a feature to split on, x<sub>d</sub><br>
+    &nbsp# split D<sub>train</sub> according to x<sub>d</sub><br>
+    &nbsp&nbspfor v in V(x<sub>d</sub>), all possible values for x<sub>d</sub>:<br>
+        &nbsp&nbsp&nbspD<sub>v</sub> = {(x<sup>n</sup>, y<sup>n</sup>) ∈ D<sub>train</sub>(x<sup>n</sup><sub>d</sub> = v)}<br>
+    &nbsp# compute a majority vote for each split<br>
+    &nbsp&nbspfor v in V(x<sub>d</sub>):<br>
+        &nbsp&nbsp&nbspstore $\hat{y}$ <sub>v</sub> = mode(labels in D<sub>v</sub>)<br>
 def h(x<sup>'</sup>):<br>
     for v in V(x<sub>d</sub>):<br>
         if x<sup>'</sup><sub>d</sub> = v: return $\hat{y}$ <sub>v</sub><br>
