@@ -52,16 +52,5 @@ This defines how "bad" predictions $\hat{y}$ = h(x), are compared to the true la
 2. Binary or 0-1 loss (for classification): l(y, $\hat{y}$ ) = 1(y != $\hat{y}$ ) <br>
 
 ### Decision Stump Pseudocode:
-```
-def train(D<sub>train</sub>):<br>
-    pick a feature to split on, x<sub>d</sub><br>
-    # split D<sub>train</sub> according to x<sub>d</sub><br>
-    for v in V(x<sub>d</sub>), all possible values for x<sub>d</sub>:<br>
-        D<sub>v</sub> = {(x<sup>n</sup>, y<sup>n</sup>) ∈ D<sub>train</sub>(x<sup>n</sup><sub>d</sub> = v)}<br>
-    # compute a majority vote for each split<br>
-    for v in V(x<sub>d</sub>):<br>
-        store $\hat{y}$ <sub>v</sub> = mode(labels in D<sub>v</sub>)<br>
-def h(x<sup>'</sup>):<br>
-    for v in V(x<sub>d</sub>):<br>
-        if x<sup>'</sup><sub>d</sub> = v: return $\hat{y}$ <sub>v</sub><br>
-```
+<img width="835" alt="Screen Shot 2024-01-22 at 5 22 35 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/0b2d5b72-c02f-4c40-9ab0-a06fb4773c4e">
+
