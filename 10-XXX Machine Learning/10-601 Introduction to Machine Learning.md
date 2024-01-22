@@ -1,5 +1,6 @@
-# Supervised and Unsupervised learning
-## Supervised models:
+
+## Supervised and Unsupervised learning
+### Supervised models:
 · Decision Trees
 · KNN
 · Naïve Bayes
