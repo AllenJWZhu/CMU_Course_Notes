@@ -1,3 +1,5 @@
+[Lecture 1: Bits, Bytes and Integers](#Bits,-Bytes-and-Integers)<br>
+
 ## Bits, Bytes and Integers
 ### Binary Representations
 Binary representation leads to a simple binary, i.e. base-2, numbering system<br>
