@@ -55,4 +55,3 @@ This defines how "bad" predictions $\hat{y}$ = h(x), are compared to the true la
 
 ### Decision Stump Pseudocode:
 <img width="835" alt="Screen Shot 2024-01-22 at 5 22 35 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/0b2d5b72-c02f-4c40-9ab0-a06fb4773c4e">
-
