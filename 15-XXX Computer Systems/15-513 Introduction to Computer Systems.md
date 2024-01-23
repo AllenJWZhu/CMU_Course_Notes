@@ -1,4 +1,5 @@
 [Lecture 1: Bits, Bytes and Integers](#Bits,-Bytes-and-Integers)<br>
+[Lecture 2: Machine Programming: Basics](#Machine-Programming)<br>
 
 ## Bits, Bytes and Integers
 ### Binary Representations
@@ -215,10 +216,10 @@ Examples: <br>
 
 ## Byte Ordering
 Big Engian: Sun (Oracle SPARC), PPC Mac, Internet<br>
-- Least significant byte has the highest address<br>
+- The least significant byte has the highest address<br>
 
 Little Endian: x86, ARM<br>
-- Least significant byte has the lowest address<br>
+- The least significant byte has the lowest address<br>
 
 Byte ordering is a concern when we are communicating data over a network, via files, etc.<br>
 Note: <br>
@@ -239,7 +240,117 @@ For example:<br>
 - Split into bytes: 00 00 12 ab<br>
 - Reverse: ab 12 00 00<br>
 
-If we want to add this value to ebx, then the assembly code would be: <br>
+If we want to add this value to %ebx, then the assembly code would be: <br>
 add $0x12ab, %ebx <br>
 The instruction code corresponding would be: <br>
 81 c3 ab 12 00 00 <br>
+
+## Machine Programming
+### Assembly Basics
+- <ins>**Architecture**</ins>: (also ISA: instruction set architecture) The parts of a processor design that one needs to understand for writing assembly/machine code.
+  - Examples: instruction set specification, registers, memory model
+  - The architecture is not the hardware, it is the interface of the hardware
+- <ins>*Microarchitecture**</ins>: Implementation of the architecture
+  - Examples: cache sizes and core frequency
+
+- Code Forms:
+  - <ins>**Machine Code**</ins>: The byte-level programs that a processor executes
+  - <ins>**Assembly Code**</ins>: A text representation of machine code, (human-readable version of the assembly language)
+
+Example ISAs:
+- Intel: x86, IA32, Itanium, x86-64
+- ARM: Used in almost all mobile phones
+- RISC V: New open-source ISA
+
+### Assembly Code and Machine Basics
+- <ins>**PC: Program counter**</ins>
+  - Address of next instruction
+  - Called “RIP” (x86-64)
+- <ins>**Register file**</ins>
+  - Heavily used program data
+  - Can be accessed directly
+- <ins>**Condition codes (FLAGS)**</ins>
+  - Store status information about the most recent arithmetic or logical operation
+  - Used for conditional branching
+- <ins>**Memory**</ins>
+  - Byte addressable array
+  - Heap to support code and user data 
+  - Stack to support procedures
+<img width="710" alt="Screen Shot 2024-01-23 at 2 17 32 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/43881059-d097-4c46-9ccc-e773c903794c">
+
+### Assembly Data Types
+- Integer: data of 1, 2, 4, or 8 bytes
+  - Data values
+  - Addresses (untyped pointers)
+- Floating points: 4, 8 or 10 bytes
+- SIMD vector data types of 8, 16, 32 or 64 bytes
+- Code: Byte sequences encoding a series of instructions
+- No aggregate types such as arrays or structures
+  - Just contiguously allocated bytes in memory
+
+Example:<br>
+<img width="374" alt="Screen Shot 2024-01-23 at 2 31 04 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/db92779a-df9c-4ccf-8882-600e5241b4a8"><br>
+These are 64-bit registers, so we know this is a 64-bit add <br>
+
+### X86-64 Integer Registers
+<img width="1144" alt="Screen Shot 2024-01-23 at 2 34 59 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/03150432-333f-4b76-a3b1-2c8f332df516"><br>
+
+### Moving Data
+- Moving Data:
+  - movq Source, Dest
+- Operand Types
+  - Immediate: Constant integer data
+    - Example: $0x400, $-533
+    - Like C constant, but prefixed with ‘$’
+    - Encoded with 1, 2, or 4 bytes
+  - Register: One of 16 integer registers
+    - Example: %rax, %r13
+    - But %rsp reserved for special use
+    - Others have special uses for particular instructions
+  - Memory: 8 consecutive bytes of memory at the address given by register
+    - Simplest example: (%rax)
+    - Various other “addressing modes”
+
+Movq Operand Combinations:<br>
+<img width="911" alt="Screen Shot 2024-01-23 at 2 46 52 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/be735984-ef85-4a22-ab3a-195c6406b5b3">
+- The immediate cannot be a dest
+- Cannot do memory-memory transfer with a single instruction
+
+### Memory Addressing Nodes
+Normal (R) Mem[Reg[R]]
+- Register R specifies the memory address
+- Aha! Pointer dereferencing in C
+- movq (%rcx),%rax
+  
+Displacement D(R) Mem[Reg[R]+D]
+- Register R specifies the start of the memory region
+- Constant displacement D specifies the offset
+- movq 8(%rbp),%rdx
+
+<ins>**Most General Form**</ins>:
+D(Rb,Ri,S) Mem[Reg[Rb]+S*Reg[Ri]+ D]
+- D: Constant “displacement” 1, 2, or 4 bytes
+- Rb: Base register: Any of 16 integer registers
+- Ri: Index register: Any, except for %rsp
+- S: Scale: 1, 2, 4, or 8 (why these numbers?)
+  
+Special Cases
+- (Rb,Ri) Mem[Reg[Rb]+Reg[Ri]]
+- D(Rb,Ri) Mem[Reg[Rb]+Reg[Ri]+D]
+- (Rb,Ri,S) Mem[Reg[Rb]+S*Reg[Ri]]
+
+An example of a swap function:<br>
+<img width="847" alt="Screen Shot 2024-01-23 at 2 58 33 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/e3b05ccd-abc7-4f6f-874c-77b463843975"><br>
+
+An example of address computation:<br>
+<img width="734" alt="Screen Shot 2024-01-23 at 3 01 13 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/0a939e1c-332f-47a5-a4b7-5f513a41d004"><br>
+
+### Address Computation Instruction
+leaq Src, Dst
+- Src is address mode expression
+- Set Dst to address denoted by the expression
+Uses
+- Computing addresses without a memory reference
+  - E.g., translation of p = &x[i];
+- Computing arithmetic expressions of the form x + k \* y
+  - k = 1, 2, 4, or 8
