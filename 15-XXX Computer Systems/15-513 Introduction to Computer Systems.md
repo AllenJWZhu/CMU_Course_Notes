@@ -26,8 +26,54 @@ Consider 1A2B in Hexadecimal:
   - ^ Symmetric difference 00111100 { 2, 3, 4, 5 }
   - ~ Complement 10101010 { 1, 3, 5, 7 }
 
+### Bit Operations in C
 Operations &, |, ~, ^ Available in C
 - Apply to any “integral” data type
 - long, int, short, char, unsigned
 - View arguments as bit vectors
 - Arguments applied bit-wise
+
+Examples (Char data type)
+- ~0x41 → 0xBE
+  - ~01000001 → 10111110
+- ~0x00 → 0xFF
+  - ~00000000 → 11111111
+- 0x69 & 0x55 → 0x41
+  - 01101001 & 01010101 → 01000001
+- 0x69 | 0x55 → 0x7D
+  - 01101001 | 01010101 → 01111101
+
+### Logical Operations in C
+<ins>**In contrast to Bit-Level Operators**</ins>
+- Logic Operations: &&, ||, !
+- View 0 as “False”
+- Anything nonzero as “True”
+- Always return 0 or 1
+- Early termination
+
+Examples (Char data type)
+- !0x41 → 0x00
+- !0x00 → 0x01
+- !!0x41→ 0x01
+- 0x69 && 0x55 → 0x01
+- 0x69 || 0x55 → 0x01
+- p && *p (avoids null pointer access)
+
+### Shift Operations
+**Left Shift**: x << y
+- Shift bit-vector x left y positions
+  – Throw away extra bits on the left
+- Fill with 0’s on right
+
+**Right Shift**: x >> y
+- Shift bit-vector x right y positions
+  - Throw away extra bits on the right
+- Logical shift
+  - Fill with 0’s on the left
+- Arithmetic shift
+  - Replicate the most significant bit on the left
+ 
+**Undefined Behavior**
+- Shift amount < 0 or ≥ word size
+<img width="295" alt="Screen Shot 2024-01-22 at 6 58 21 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/cf3c1e9c-8c86-46c8-b52d-0b11bb9b4934">
+
