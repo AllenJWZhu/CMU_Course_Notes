@@ -1,5 +1,6 @@
 [Lecture 1: Bits, Bytes and Integers](#Bits,-Bytes-and-Integers)<br>
-[Lecture 2: Machine Programming: Basics](#Machine-Programming)<br>
+[Lecture 2: Machine Programming: Basics](#Machine-Programming:-Basics)<br>
+[Lecture 3: Machine Programming: Control](#Machine-Programming:-Control)<br>
 
 ## Bits, Bytes and Integers
 ### Binary Representations
@@ -245,7 +246,7 @@ add $0x12ab, %ebx <br>
 The instruction code corresponding would be: <br>
 81 c3 ab 12 00 00 <br>
 
-## Machine Programming
+## Machine Programming: Basics
 ### Assembly Basics
 - <ins>**Architecture**</ins>: (also ISA: instruction set architecture) The parts of a processor design that one needs to understand for writing assembly/machine code.
   - Examples: instruction set specification, registers, memory model
@@ -307,7 +308,7 @@ These are 64-bit registers, so we know this is a 64-bit add <br>
     - Example: %rax, %r13
     - But %rsp reserved for special use
     - Others have special uses for particular instructions
-  - Memory: 8 consecutive bytes of memory at the address given by register
+  - Memory: 8 consecutive bytes of memory at the address given by the register
     - Simplest example: (%rax)
     - Various other “addressing modes”
 
@@ -354,3 +355,83 @@ Uses
   - E.g., translation of p = &x[i];
 - Computing arithmetic expressions of the form x + k \* y
   - k = 1, 2, 4, or 8
+
+### Turning C into Object Code
+<img width="877" alt="Screen Shot 2024-01-25 at 2 02 40 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/62264bf5-2dfc-4d43-9b8e-a596e0571b08"><br>
+
+## Machine Programming: Control
+### Finding pointers
+- %rsp and %rip always hold pointers
+  - Register values that are “close” to %rsp or %rip are probably also pointers
+- If a register is being used as a pointer…
+  - mov (%rsi), %rsi
+  - …Then its value is expected to be a pointer.
+    - There might be a bug that makes its value incorrect.
+
+- Not as obvious with complicated address “modes”
+  -  (%rsi, %rbx) – One of these is a pointer, we don’t know which.
+  -  (%rsi, %rbx, 2) – %rsi is a pointer, %rbx isn’t (why?)
+  -  0x400570(, %rbx, 2) – 0x400570 is a pointer, %rbx isn’t (why?)
+  -  lea (anything), %rax – (anything) may or may not be a pointer
+
+### Control Flow
+- We would use jmp statements as GOTO statements for changing control flows
+<img width="793" alt="Screen Shot 2024-01-25 at 2 22 37 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/a6829724-13e1-4ca9-bc8d-e9038aabe74c"><br>
+- We will use condition codes to determine if we need to jump
+
+- Single-bit registers
+  - CF Carry Flag (for unsigned)
+  - SF Sign Flag (for signed)
+  - ZF Zero Flag
+  - OF Overflow Flag (for signed)
+
+- Compare Instruction
+  - cmp a, b
+    - Computes 𝑏𝑏 − 𝑎𝑎 (just like sub)
+    - Sets condition codes based on the result, but…
+    - Does not change 𝒃𝒃
+    - Used for if (a < b) { … } whenever 𝑏𝑏 − 𝑎𝑎 isn’t needed for anything else
+
+- Test Instruction
+  - test a, b
+    - Computes 𝑏𝑏&𝑎𝑎 (just like and)
+    - Sets condition codes (only SF and ZF) based on the result, but…
+    - Does not change 𝒃𝒃
+    - Most common use: test %rX, %rX to compare %rX to zero
+    - Second most common use: test %rX, %rY tests if any of the 1-bits in %rY are also 1 in %rX (or vice versa)
+
+### Conditional Branches
+- jX Instructions
+  - Jump to different parts of the code depending on condition codes
+<img width="646" alt="Screen Shot 2024-01-25 at 2 30 04 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/d34bd338-6ee0-4fd6-9b48-8a418730d82a"><br>
+- For example:
+  - cmp a, b
+  - je 1000
+- If a and b are equal, then jump to instruction 1000
+
+- SetX Instructions
+  - Set the low-order byte of the destination to 0 or 1 based on combinations of condition codes
+  - Does not alter the remaining 7 bytes<br>
+<img width="644" alt="Screen Shot 2024-01-25 at 2 32 20 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/83fdd64b-0395-4d3f-ad4c-294e13406628"><br>
+
+- Example<br>
+<img width="825" alt="Screen Shot 2024-01-25 at 2 45 26 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/db1098d9-dfd8-443a-b212-d9059937aeae"><br>
+
+### Conditional Move Instruction
+- This is much more efficient for processors
+  
+- Conditional Move Instructions
+  - Instruction supports:
+    - if (Test) Dest ← Src
+  - Supported in post-1995 x86 processors
+  - GCC tries to use them
+    - But, only when known to be safe
+- Why?
+- Branches are very disruptive to an instruction flow through pipelines
+- Conditional moves do not require control transfer
+<img width="851" alt="Screen Shot 2024-01-25 at 2 49 02 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/20ff5d06-fb88-491b-8a0d-122ab5973c2e">
+
+### Loops
+- Use conditional branch to either continue looping or to exit the loop<br>
+<img width="858" alt="Screen Shot 2024-01-25 at 2 52 54 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/7483aa24-b508-466f-a733-0d84014ae0fc">
+
