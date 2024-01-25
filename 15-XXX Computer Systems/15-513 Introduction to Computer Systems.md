@@ -1,6 +1,6 @@
 [Lecture 1: Bits, Bytes and Integers](#Bits,-Bytes-and-Integers)<br>
-[Lecture 2: Machine Programming: Basics](#Machine-Programming:-Basics)<br>
-[Lecture 3: Machine Programming: Control](#Machine-Programming:-Control)<br>
+[Lecture 2: Machine Programming: Basics](#Machine-Programming-Basics)<br>
+[Lecture 3: Machine Programming: Control](#Machine-Programming-Control)<br>
 
 ## Bits, Bytes and Integers
 ### Binary Representations
@@ -246,7 +246,7 @@ add $0x12ab, %ebx <br>
 The instruction code corresponding would be: <br>
 81 c3 ab 12 00 00 <br>
 
-## Machine Programming: Basics
+## Machine Programming Basics
 ### Assembly Basics
 - <ins>**Architecture**</ins>: (also ISA: instruction set architecture) The parts of a processor design that one needs to understand for writing assembly/machine code.
   - Examples: instruction set specification, registers, memory model
@@ -359,7 +359,7 @@ Uses
 ### Turning C into Object Code
 <img width="877" alt="Screen Shot 2024-01-25 at 2 02 40 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/62264bf5-2dfc-4d43-9b8e-a596e0571b08"><br>
 
-## Machine Programming: Control
+## Machine Programming Control
 ### Finding pointers
 - %rsp and %rip always hold pointers
   - Register values that are “close” to %rsp or %rip are probably also pointers
