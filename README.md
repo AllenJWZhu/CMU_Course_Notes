@@ -33,11 +33,11 @@ Questions, feedback, or want to collaborate? Feel free to reach out to me at all
 
 ## Acknowledgments
 
-Special thanks to the faculty and students of CMU who have contributed to and inspired this collection of notes.
+Special thanks to the faculty and students of CMU who have contributed to and inspired this collection of notes and Xuezzou, who inspired me to create this project.
 <br><br><br><br>
 # 卡内基梅隆大学课程笔记
 
-卡内基梅隆大学提供的各种计算机科学课程的全面笔记，为学生和教育工作者提供了宝贵的资源。
+这个项目为本人在卡内基梅隆大学学习期间保留的计算机科学课程的全面笔记。
 
 ## 项目描述
 
@@ -45,13 +45,13 @@ Special thanks to the faculty and students of CMU who have contributed to and in
 
 ## 使用方式
 
-资料库按课程部门组织。每个部门文件夹包含单独的课程，在那里你会找到以PDF和Markdown格式的笔记。
+资料库按课程部门组织。每个部门文件夹包含单独的课程，在那里您会找到以PDF和Markdown格式的笔记。
 
 要查看笔记，只需点击文件。要下载，点击“下载”按钮或使用GitHub界面中的raw选项。
 
 ## 如何贡献
 
-我们欢迎对目前尚未列出的课程进行贡献！要贡献：
+欢迎对目前尚未列出的课程进行贡献！如果您希望做出贡献：
 1. Fork该资料库。
 2. 进行更改。
 3. 提交一个明确描述您改进的Pull请求。
@@ -67,7 +67,3 @@ Special thanks to the faculty and students of CMU who have contributed to and in
 ## 联系方式
 
 有问题、反馈或想合作？欢迎通过allenzhu724@gmail.com与我联系，或在[LinkedIn](https://www.linkedin.com/in/allenjwzhu724/)上与我连接。
-
-## 致谢
-
-特别感谢CMU的师生们，他们对这个笔记集合的贡献和启发。
