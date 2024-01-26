@@ -8,10 +8,20 @@ Born out of a need to consolidate and share rich academic knowledge, this reposi
 
 ## Ongoing Updates
 
-- 15-513 Computer Systems
-- 14-736 Distributed Systems
 - 10-601 Machine Learning
+- 14-736 Distributed Systems
 - 14-741 Information Security
+- 15-513 Computer Systems
+
+## TBD
+
+- 10-605 Machine Learning with Large Datasets
+- 10-617 Intermediate Deep Learning
+- 10-725 Convex Optimization
+- 11-742 Search Engines
+- 15-619 Cloud Computing
+- 15-645 Database Systems
+- 18-746 Storage Systems
 
 ## Usage
 
@@ -56,6 +66,16 @@ Special thanks to the faculty and students of CMU who have contributed to and in
 - 14-736 分布式系统
 - 10-601 机器学习
 - 14-741 信息安全
+  
+## 待定
+
+- 10-605 机器学习与大数据
+- 10-617 中级深度学习
+- 10-725 凸优化/非线性优化
+- 11-742 搜索引擎
+- 15-619 云计算
+- 15-645 数据库系统
+- 18-746 存储系统
   
 ## 使用方式
 
