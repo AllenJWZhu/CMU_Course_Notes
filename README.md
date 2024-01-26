@@ -34,4 +34,40 @@ Questions, feedback, or want to collaborate? Feel free to reach out to me at all
 ## Acknowledgments
 
 Special thanks to the faculty and students of CMU who have contributed to and inspired this collection of notes.
+<br><br><br><br>
+# 卡内基梅隆大学课程笔记
 
+卡内基梅隆大学提供的各种计算机科学课程的全面笔记，为学生和教育工作者提供了宝贵的资源。
+
+## 项目描述
+
+出于整合和分享丰富的学术知识的需求，这个资料库旨在提供详细和易于访问的笔记，涵盖在CMU教授的广泛学科。从计算机系统到机器学习和人工智能，这些笔记包含了关键概念、课堂洞察和学习指南。这个资源非常适合寻求补充学习材料的CMU学生、寻找教学辅助材料的教育工作者，以及对课程感兴趣的自学者。
+
+## 使用方式
+
+资料库按课程部门组织。每个部门文件夹包含单独的课程，在那里你会找到以PDF和Markdown格式的笔记。
+
+要查看笔记，只需点击文件。要下载，点击“下载”按钮或使用GitHub界面中的raw选项。
+
+## 如何贡献
+
+我们欢迎对目前尚未列出的课程进行贡献！要贡献：
+1. Fork该资料库。
+2. 进行更改。
+3. 提交一个明确描述您改进的Pull请求。
+   
+## 责任
+
+请避免上传来自CMU的代码或未经授权的材料。这样的Pull请求将不会被批准。
+
+## 许可证
+
+该项目在MIT许可证下授权。这意味着您可以自由使用、修改和分发笔记，只要您注明来源。更多详情见LICENSE.md。
+
+## 联系方式
+
+有问题、反馈或想合作？欢迎通过allenzhu724@gmail.com与我联系，或在[LinkedIn](https://www.linkedin.com/in/allenjwzhu724/)上与我连接。
+
+## 致谢
+
+特别感谢CMU的师生们，他们对这个笔记集合的贡献和启发。
