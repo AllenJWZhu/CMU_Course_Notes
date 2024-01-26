@@ -6,6 +6,13 @@ Comprehensive notes for various CS courses offered at Carnegie Mellon University
 
 Born out of a need to consolidate and share rich academic knowledge, this repository aims to provide detailed and accessible notes covering a wide range of subjects taught at CMU. From Computer Systems to Machine Learning and Artificial Intelligence, the notes encapsulate key concepts, lecture insights, and study guides. This resource is ideal for CMU students seeking supplementary study material, educators looking for teaching aids, and self-learners interested in the curriculum.
 
+## Ongoing Updates
+
+- 15-513 Computer Systems
+- 14-736 Distributed Systems
+- 10-601 Machine Learning
+- 14-741 Information Security
+
 ## Usage
 
 The repository is organized by course departments. Each department folder contains individual courses, where you'll find notes in PDF and Markdown formats.
@@ -43,6 +50,13 @@ Special thanks to the faculty and students of CMU who have contributed to and in
 
 出于整合和分享丰富的学术知识的需求，这个资料库旨在提供详细和易于访问的笔记，涵盖在CMU教授的广泛学科。从计算机系统到机器学习和人工智能，这些笔记包含了关键概念、课堂洞察和学习指南。这个资源非常适合寻求补充学习材料的CMU学生、寻找教学辅助材料的教育工作者，以及对课程感兴趣的自学者。
 
+## 更新中
+
+- 15-513 计算机系统导论
+- 14-736 分布式系统
+- 10-601 机器学习
+- 14-741 信息安全
+  
 ## 使用方式
 
 资料库按课程部门组织。每个部门文件夹包含单独的课程，在那里您会找到以PDF和Markdown格式的笔记。
