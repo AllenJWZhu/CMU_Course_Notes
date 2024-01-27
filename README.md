@@ -38,7 +38,7 @@ We welcome contributions to courses not yet listed at the moment! To contribute:
 2. Make your changes.
 3. Submit a pull request with a clear description of your improvements.
 
-### Responsibilities
+## Responsibilities
 
 Please refrain from uploading code or unauthorized material from CMU. Such push requests will not be granted.
 
