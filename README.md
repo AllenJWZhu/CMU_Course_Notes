@@ -40,7 +40,7 @@ We welcome contributions to courses not yet listed at the moment! To contribute:
 
 ## Responsibilities
 
-Please refrain from uploading code or unauthorized material from CMU. Such push requests will not be granted.
+Please refrain from uploading code or unauthorized material from CMU. Such pull requests will not be granted.
 
 ## License
 
