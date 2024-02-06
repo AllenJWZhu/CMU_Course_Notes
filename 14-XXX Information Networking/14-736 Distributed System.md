@@ -155,3 +155,108 @@ Difficulties:<br>
     - If a machine fails, part of the application fails and part doesn’t
     - Can you tell the difference between machine failure and network failure?
 
+## Replication
+
+-  Reasons for Replication
+  - Increased throughput/bandwidth/parallelism
+  - Increased fault tolerance
+  - Improve latency by storing content closer to distributed consumers, e.g., “at the edge”
+
+### Primary and Secondary Replicas
+- Primary replicas
+  - Exact copies of the original
+  - Common for file servers, databases, etc.
+
+- Secondary replicas (eg. Github repo not updated)
+  - Derivable from the original
+  - Lower fidelity in some way
+  - Caches (possibly stale)
+  - Thumbnails (lower resolution, faster to transmit, smaller to store)
+  - Compressed copies (slower to access, harder to update)
+
+- Primary takes all updates
+  - Secondary may get occasional/periodic updates or “listen” to primary updates
+  - Primary needs additional overhead to manage, secondary can be managed when possible
+  - Frequency of secondary updates can be balanced for desired overhead, consistency, usefulness, etc.
+
+- Secondaries may be read-only caches
+  - Leaving primary as the definitive and most up-to-date copy
+  - An update of secondary affects how useful it is as a backup for primary
+
+### Efficient Replica Management
+- Rather than enforce perfect replication (which has high overhead), it’s often reasonable to allow replicas to vary from each other slightly (e.g., one can be out of date
+  w.r.t. others) in trade for significantly less latency/overhead
+
+- Need to be careful not to overly complicate the management of replication, or we could end up with more latency/overhead
+
+- Goal: we want to achieve <ins>one-copy semantics</ins>, meaning we can perform read and write operations on a collection of replicas with the same results as if there were one nonreplicated object
+
+### Quorum
+- A group of servers trying to provide one-copy semantics
+
+- Setup of the Quorum
+  - N primary replicas, no secondary replicas
+  - One-copy semantics
+    - Each "read" makes a local copy of multiple replicas, determines which is "correct" and discards others
+    - Each "write" overwrites multiple replicas with a single local copy
+      - Writes are not edits, they are replacements
+      - A "read-then-write" approach is typically used
+
+  - Concurrency controls are assumed
+    - All reads and writes are "safe"
+
+### Concurrency Control Addresses Conflict
+- Replication conflict
+  - Any situation where concurrent actions break the usefulness of replicas
+
+- Writes cause conflicts
+  - Write-write
+    - If there are 2 replicas, A writes to one while B writes to the other, which is the newest?
+    - If there is 1 replica, both A and B write, the outcome is uncertain (race condition)
+
+  - Write-read
+    - If there are 2 replicas, A writes to one while B reads from the other, then B reads an old file
+    - If there is 1 replica, A writes as B is reading, B may read a mix of old and new content
+
+- Reads don’t cause conflicts
+  - Read-read is safe
+    - But caution is still needed while reading…
+
+### Read/Write of Replicated Data
+- If a large number of users can access and modify replicated data, we have to be careful about who is reading/writing which replica
+
+- Ex: if there are four replicas f1, f2, f3, f4 of a file, what happens if one user writes f3 and f4 while another user reads f1 and f2?
+
+### Read and Write Quora
+- Read quorum: Number of servers R a reader should read from
+- Write quorum: Number of servers W a writer should write to
+- What is the relationship between these?
+- Can we tune them to achieve different goals?<br>
+
+<img width="952" alt="Screen Shot 2024-02-06 at 5 43 24 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/d06f50d5-e7c7-4311-86fe-d43d20acd84b"><br>
+
+### Quora Must Overlap
+- The read quorum and the write quorum must overlap
+  - Why? Without overlap, readers could miss-write and get old value
+  - R + W > N  is a necessary condition for correctness
+- Requires the ability to identify the most recent version among the replicas that are read (more in a few slides)<br>
+
+<img width="1140" alt="Screen Shot 2024-02-06 at 5 44 17 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/7557db30-986e-48ea-969a-0fe050e8cd4c"><br>
+<img width="1118" alt="Screen Shot 2024-02-06 at 5 44 37 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/452a096c-91e8-4c52-8ca3-a4c3832dfca8"><br>
+
+### Tuning a Quorum
+- Often true that reading is more common the writing (I access files more often than I update them)
+
+- Increase W, i.e., larger write quorum
+  - More redundancy for robustness
+  - More local to consumers
+  - Higher write cost (network and device throughput, contention, long tail, etc.)
+
+- Decrease R, i.e., smaller read quorum
+  - Lower cost to read (network and device throughput, contention, long tail, etc.)
+  - More choices of where to read (closer to the user)
+  - More expensive writes (but that’s ok since they’re less frequent)
+
+- Larger overlap
+  - More tolerance for failure
+
