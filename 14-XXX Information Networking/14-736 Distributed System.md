@@ -260,3 +260,82 @@ Difficulties:<br>
 - Larger overlap
   - More tolerance for failure
 
+- Common Practice:
+  - Read-one / write-all (i.e., R=1, W=N) is the most common
+    - Reads are more common than writes, so make them easy
+      - Read gets most current data (requirement)
+      - Reads can choose any replica (nearby, failure, etc.)
+      - Reads require low bandwidth
+      - Makes common case safe and fast
+
+### Version Determination
+- If every replica has a version number (like a timestamp or sequence number), then determining which read replica is the newest is easy
+Simply choose the replica with the "highest" version number
+  - Read〈f,tf〉from R servers ⇒〈f1,tf1〉,〈f2,tf2〉,...,〈fR,tfR〉
+  - Keep fj, where j = argmaxi tfi
+- Still need to ensure that the overall newest version is guaranteed to be within any set of R replicas (e.g., via quorum)
+
+### Majority Read Quorum
+- Make W large enough to guarantee that for any R replicas, strictly more than R/2 of them are the newest version
+  - the majority of any read quorum represents the most recent version of the replica
+    - E.g., if 3 of the 5 replicas I read are the same, they are guaranteed to be the most recent version
+  - the overlap between the write quorum and the read quorum must include the majority of the read quorum
+- Overlap must be a majority of any read quorum
+  - must write to all but a quorum minority
+    - W > (N - R/2)
+  - And this doesn’t even account for any read/write failures<br>
+<img width="914" alt="Screen Shot 2024-02-06 at 5 54 17 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/fe08c4e2-6d1b-45e6-9a40-80d1c7ec7ea3"><br>
+- This is very expensive
+  - But we don't even need a reference of time at all and guarantee we could still do versioning!
+
+### Write-all
+- If W = N (i.e., "write-all"), then it’s impossible for an old replica to be present in the system since every replica is always overwritten
+- Any read of any replica guarantees it is the newest overall replica
+  - However, if one write fails, no one can read from the entire system until that server backs up.
+    - This could lead to a lockdown system...
+    - Thus, this is requiring the system to be perfect thus resulting in slow results.
+
+### Locking
+- Uncontrolled concurrent writes can break quorum discipline (and maybe even corrupt data)
+  - Also could break version number increment
+
+- What to lock?
+  - Object at servers, not whole servers
+
+- How many to lock?
+  - L ≥ R ⇐ lock quorum must cover most recent version
+  - L ≥ W ⇐ lock quorum must cover every write to protect version and data
+  - L ≥ max(R, W) ⇐ lock quorum must cover all reads and writes of updating object
+
+### Failures
+- If the overlap between read and write Quora is strictly greater than F, then F failures can be tolerated
+  - With version numbers: R + W - F > N
+  - Without version numbers: W + R/2 - F > N
+  - Still guaranteed to see an up-to-date version
+- If not covered by overlap, the failure model becomes important
+
+### Alternatives to Static Quora
+- A static quorum is a pre-defined quorum (like our examples)
+  - Not adaptive in terms of membership, connectivity, etc.
+- We have counted each replica equally (one replica = one vote), but this is not required
+- Alternatively, we can assign weights to different hosts based on any reasonable, observable metric; quorum rules still apply, but weighted
+- Examples:
+  - More weight to more reliable hosts (more unreliable hosts for the same robustness)
+  - Less weight to caches or secondary replicas, due to expiration and staleness
+
+### Coda Version Vectors
+- CVVs are a form of vector logical timestamp (remember those?)
+- A CVV contains one entry for each server, which is the version number of the file on the corresponding server (ideally, all equal)
+- If a server doesn’t get an update to the file, its CVV entry will be lower than others
+
+- A Coda client requests a file via a three-step process:
+  - It asks all replicas for their version number
+  - It requests the file from the replica with the largest version number
+  - If the servers don't agree about the file’s version, the client can detect and inform them of the conflict
+    - A conflict exists if two CVVs are concurrent, which indicates that each server has seen some but not all changes
+
+- Ideally, a Coda client writes a file as:
+  - The client sends the file and original CVV to all servers
+  - Each server increments its entry in the file's CVV and sends an ACK to the client
+  - The client merges the entries from all of the servers and sends the new CVV back to each server
+  - If a conflict is detected, the client can inform the servers, so that it can be resolved automatically, or flagged for mitigation by the user
