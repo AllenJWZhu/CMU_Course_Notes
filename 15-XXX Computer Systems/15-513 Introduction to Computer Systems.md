@@ -435,3 +435,113 @@ Uses
 - Use conditional branch to either continue looping or to exit the loop<br>
 <img width="858" alt="Screen Shot 2024-01-25 at 2 52 54 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/7483aa24-b508-466f-a733-0d84014ae0fc">
 
+## Machine Programming Advanced
+### Linux x-86 Memory Layout
+- Stack
+  - Runtime stack (8MB limit)
+  - e.g., local variables
+- Heap
+  - Dynamically allocated as needed
+  - When call malloc(), calloc(), new()
+- Data
+  - Statically allocated data
+  - e.g., global vars, static vars, string constants
+- Text / Shared Libraries
+  - Executable machine instructions
+  - Read-only<br>
+<img width="158" alt="Screen Shot 2024-02-06 at 2 05 40 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/44d88a5b-0f6f-46a7-bc0b-396288a18f65"><br>
+
+- Example layout:
+  - Here, the struct is allocated in the stack,
+  - In every function call, the memory address of the return value is pushed to the stack pointer,
+  - The s.a[i] line is writing to memory. In lecture 1, fun(6) crashed the program. Why did writing to this location cause the process to crash?
+    - This is possible when the instruction has been overwritten.<br>
+<img width="292" alt="Screen Shot 2024-02-06 at 2 13 12 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/51f0ed96-c5a3-42e6-9ff8-911f918d49e4"><br>
+
+### Buffer Overflow
+<img width="694" alt="Screen Shot 2024-02-06 at 2 18 39 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/349bb0ad-c412-4840-b9da-e9f1def7dfac"><br>
+- Generally called a “buffer overflow”
+  - When exceeding the memory size allocated for an array
+- Why a big deal?
+  - It’s the #1 technical cause of security vulnerabilities
+    - #1 overall cause is social engineering/user ignorance
+- Most common form
+  - Unchecked lengths on string inputs
+  - Particularly for bounded character arrays on the stack
+    - sometimes referred to as stack-smashing
+- This is an issue for gets() function
+- Similar problems with other library functions
+  - strcpy, strcat: Copy strings of arbitrary length
+  - scanf, fscanf, sscanf, when given %s conversion specification<br>
+
+### View of Buffer Overflow
+<img width="880" alt="Screen Shot 2024-02-06 at 2 25 25 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/974e6365-5fc7-4b37-b4ac-ad784f903362"><br>
+<img width="806" alt="Screen Shot 2024-02-06 at 2 26 52 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/37b2bb2b-eccc-48c1-b3de-87ceda5c5028"><br>
+- This could be utilized for Stack Smashing Attacks<br>
+<img width="857" alt="Screen Shot 2024-02-06 at 2 30 38 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/38c07845-bc15-4758-ad2d-8fcd81853df4"><br>
+- Overwrite normal return address A with the address of some other code S
+- When Q executes ret, will jump to other code
+- x-86 reads long in little-endian order, thus we would need to create a reversed address attack string.
+
+### Code Injection Attacks<br>
+<img width="385" alt="Screen Shot 2024-02-06 at 2 39 20 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/701cd0b2-65e1-4e88-87ab-ac6c7154780a"><br>
+- Input string contains byte representation of executable code
+- Overwrite return address A with the address of buffer B
+- When Q executes ret, will jump to exploit code
+
+### Code Injection Execution<br>
+<img width="882" alt="Screen Shot 2024-02-06 at 2 40 42 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/a12d5ec1-e51c-4e9d-8ea3-79a29728eb3e"><br>
+
+### Avoiding Buffer Overflow
+1. Avoid Overflow Vulnerabilities in Code
+  - For example, use library routines that limit string lengths
+    - fgets instead of gets
+    - strncpy instead of strcpy
+    - Don’t use scanf with %s conversion specification
+      - Use fgets to read the string
+      - Or use %ns where n is a suitable integer
+
+2. System-Level Protections
+- Randomized stack offsets
+  - At the start of the program, allocate a random amount of space on the stack
+  - Shifts stack addresses for the entire program
+  - Makes it difficult for hackers to predict the beginning of inserted code<br>
+  <img width="295" alt="Screen Shot 2024-02-06 at 2 49 34 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/bf025b2f-200c-4076-876c-fae8cddca310"><br>
+
+- Non-executable memory
+  - Older x86 CPUs would execute machine code from any readable address
+  - x86-64 added a way to mark regions of memory as not executable
+  - Immediate crash on jumping into any such region
+  - Current Linux and Windows marks the stack this way<br>
+<img width="486" alt="Screen Shot 2024-02-06 at 2 51 12 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/ea6f6327-bf25-4da3-95d6-898232cd5804"><br>
+
+- Stack Canaries
+  - Idea
+    - Place a special value (“canary”) on the stack just beyond the buffer
+    - Check for corruption before exiting function
+  - GCC Implementation
+    - -fstack-protector
+    - Now the default (disabled earlier)<br>
+<img width="446" alt="Screen Shot 2024-02-06 at 2 52 27 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/ba025275-9e16-4d31-b4e6-37e48f07d5e1"><br>
+
+### Return-Oriented Programming Attacks
+- Challenge (for hackers)
+  - Stack randomization makes it hard to predict buffer location
+  - Marking stack non-executable makes it hard to insert binary code
+- Alternative Strategy
+  - Use existing code
+    - Part of the program or the C library
+  - String together fragments to achieve an overall desired outcome
+  - Does not overcome stack canaries
+- Construct programs from gadgets
+  - The sequence of instructions ending in ret
+    - Encoded by single byte 0xc3
+  - Code positions fixed from run to run
+  - Code is executable
+
+### ROP Execution<br>
+<img width="514" alt="Screen Shot 2024-02-06 at 3 06 00 PM" src="https://github.com/AllenJWZhu/CMU_Course_Notes/assets/55110211/cf50dbfc-8e45-415c-bc99-75b8521b5af7"><br>
+- Trigger with ret instruction
+  - Will start executing Gadget 1
+- Final ret in each gadget will start the next one
+  - ret: pop the address from the stack and jump to that address
