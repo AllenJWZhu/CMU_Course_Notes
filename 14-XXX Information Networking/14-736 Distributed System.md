@@ -154,3 +154,4 @@ Difficulties:<br>
   -  In distributed computing:
     - If a machine fails, part of the application fails and part doesn’t
     - Can you tell the difference between machine failure and network failure?
+
