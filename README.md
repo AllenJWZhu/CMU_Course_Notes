@@ -20,6 +20,7 @@ Born out of a need to consolidate and share rich academic knowledge, this reposi
 - 10-623 Generative AI
 - 10-725 Convex Optimization
 - 11-742 Search Engines
+- 11-667 Large Language Models
 - 15-619 Cloud Computing
 - 15-641 Computer Networks
 - 15-645 Database Systems
@@ -76,6 +77,7 @@ Special thanks to the faculty and students of CMU who have contributed to and in
 - 10-623 生成式人工智能
 - 10-725 凸优化/非线性优化
 - 11-742 搜索引擎
+- 11-667 大语言模型
 - 15-619 云计算
 - 15-641 计算机网络
 - 15-645 数据库系统
