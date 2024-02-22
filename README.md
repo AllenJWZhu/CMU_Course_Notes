@@ -10,7 +10,6 @@ Born out of a need to consolidate and share rich academic knowledge, this reposi
 
 - 10-601 Machine Learning
 - 14-736 Distributed Systems
-- 14-741 Information Security
 - 15-513 Computer Systems
 
 ## TBD
@@ -68,7 +67,6 @@ Special thanks to the faculty and students of CMU who have contributed to and in
 - 15-513 计算机系统导论
 - 14-736 分布式系统
 - 10-601 机器学习
-- 14-741 信息安全
   
 ## 待定
 
