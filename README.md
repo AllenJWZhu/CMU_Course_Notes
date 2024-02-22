@@ -1,6 +1,6 @@
 # CMU Course Notes
 
-Comprehensive notes for various CS courses offered at Carnegie Mellon University are designed as an invaluable resource for students and educators alike. 
+Comprehensive notes for various CS courses offered at Carnegie Mellon University are designed as an invaluable resource for students and educators alike. Since my program primarily focuses on the system track and machine learning track. I will be mainly updating courses within the scope of these two major fields.
 
 ## Project Description
 
