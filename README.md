@@ -1,7 +1,5 @@
 # CMU Course Notes
 
-Comprehensive notes for various CS courses offered at Carnegie Mellon University are designed as an invaluable resource for students and educators alike.
-
 ## Ongoing Updates
 
 - 10-601 Machine Learning
